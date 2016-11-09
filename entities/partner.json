@@ -1,0 +1,47 @@
+{
+	"id": "07453551-fcea-4539-828c-90550dc5a121",
+	"fields": [
+		{
+			"name": "id_partner",
+			"type": "number",
+			"read": true,
+			"write": false,
+			"primary": true,
+			"unique": true,
+			"required": true,
+			"autoIncrement": true
+		},
+		{
+			"name": "name",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "url",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "logo",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		}
+	],
+	"relations": [
+		{
+			"as": "id_partner",
+			"type": "belongsToMany",
+			"through": "event_partners",
+			"reference": {
+				"entity": "event",
+				"as": "slug_event"
+			}
+		}
+	]
+}

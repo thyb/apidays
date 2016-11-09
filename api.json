@@ -1,0 +1,26 @@
+[
+	{
+		"method": "post",
+		"url": "/speakers",
+		"query": {
+			"entity": "speaker",
+			"id": "create"
+		}
+	},
+	{
+		"method": "get",
+		"url": "/events/:slug",
+		"query": {
+			"entity": "event",
+			"id": "getEventFullData"
+		}
+	},
+	{
+		"method": "get",
+		"url": "/events",
+		"query": {
+			"entity": "event",
+			"id": "listWithInfos"
+		}
+	}
+]

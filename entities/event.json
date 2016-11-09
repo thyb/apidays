@@ -1,0 +1,282 @@
+{
+	"id": "bc214365-26e1-4290-8ad1-27a855111eb0",
+	"fields": [
+		{
+			"name": "slug",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"primary": true,
+			"unique": true,
+			"required": true
+		},
+		{
+			"name": "baseline",
+			"type": "text",
+			"read": true,
+			"write": true
+		},
+		{
+			"name": "date_start",
+			"type": "date",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "date_end",
+			"type": "date",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "display_talk",
+			"type": "boolean",
+			"read": true,
+			"write": true,
+			"default": true,
+			"defaultValue": true
+		},
+		{
+			"name": "eventbrite",
+			"type": "text",
+			"read": true,
+			"write": true
+		},
+		{
+			"name": "title",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "picture",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "call_to_speaker",
+			"type": "text",
+			"read": true,
+			"write": true
+		},
+		{
+			"name": "hackathon",
+			"type": "text",
+			"read": true,
+			"write": true
+		},
+		{
+			"name": "description",
+			"type": "text",
+			"read": true,
+			"write": true
+		}
+	],
+	"relations": [
+		{
+			"as": "slug_event",
+			"type": "belongsToMany",
+			"through": "event_sponsor",
+			"reference": {
+				"entity": "sponsor",
+				"as": "id_sponsor"
+			},
+			"$$hashKey": "object:57930"
+		},
+		{
+			"type": "hasMany",
+			"reference": {
+				"entity": "talk",
+				"field": "slug_event"
+			},
+			"$$hashKey": "object:57931"
+		},
+		{
+			"as": "slug_event",
+			"type": "belongsToMany",
+			"through": "event_speaker",
+			"reference": {
+				"entity": "speaker",
+				"as": "id_speaker"
+			},
+			"$$hashKey": "object:57932"
+		},
+		{
+			"field": "id_place",
+			"type": "belongsTo",
+			"reference": {
+				"entity": "place",
+				"field": "id_place"
+			},
+			"$$hashKey": "object:57933"
+		},
+		{
+			"as": "slug_event",
+			"type": "belongsToMany",
+			"through": "event_organizers",
+			"reference": {
+				"entity": "organizer",
+				"as": "company_organizer"
+			},
+			"$$hashKey": "object:57934"
+		},
+		{
+			"as": "slug_event",
+			"type": "belongsToMany",
+			"through": "event_partners",
+			"reference": {
+				"entity": "partner",
+				"as": "id_partner"
+			},
+			"$$hashKey": "object:57935"
+		}
+	],
+	"queries": [
+		{
+			"id": "getAllInfosBySlug",
+			"type": "findOne",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"$$hashKey": "object:14580",
+					"checked": true,
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"include": [
+					{
+						"entity": "place",
+						"fields": [
+							"name",
+							"city",
+							"country",
+							"photo"
+						]
+					},
+					{
+						"entity": "speaker",
+						"fields": [
+							"name",
+							"company",
+							"title",
+							"linkedin",
+							"profile_picture"
+						],
+						"include": [
+							{
+								"entity": "talk",
+								"fields": [
+									"title",
+									"start_at",
+									"id_speaker",
+									"slug_event"
+								]
+							}
+						]
+					},
+					{
+						"entity": "sponsor",
+						"fields": [
+							"company",
+							"logo",
+							"category"
+						]
+					},
+					{
+						"entity": "organizer",
+						"fields": [
+							"company",
+							"logo",
+							"url"
+						]
+					}
+				],
+				"select": [
+					"slug",
+					"baseline",
+					"date_start",
+					"date_end",
+					"display_talk",
+					"eventbrite",
+					"title",
+					"picture",
+					"id_place",
+					"call_to_speaker",
+					"hackathon",
+					"description"
+				],
+				"conditions": [
+					{
+						"entity": "event",
+						"name": "slug",
+						"operator": "=",
+						"value": "="
+					}
+				]
+			}
+		},
+		{
+			"id": "listWithInfos",
+			"type": "findAll",
+			"params": [],
+			"opts": {
+				"select": [
+					"slug",
+					"baseline",
+					"date_start",
+					"date_end",
+					"display_talk",
+					"eventbrite",
+					"title",
+					"picture",
+					"call_to_speaker",
+					"hackathon",
+					"description",
+					"id_place"
+				],
+				"conditions": [],
+				"include": [
+					{
+						"entity": "place",
+						"fields": [
+							"name",
+							"address",
+							"city",
+							"country",
+							"photo"
+						]
+					}
+				],
+				"orderBy": [
+					{
+						"desc": false,
+						"field": "date_start"
+					}
+				]
+			}
+		},
+		{
+			"id": "getEventFullData",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"checked": true,
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/event.getEventFullData"
+			}
+		}
+	]
+}

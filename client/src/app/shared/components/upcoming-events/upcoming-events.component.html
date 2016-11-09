@@ -1,0 +1,11 @@
+<div class="ui two cards">
+	<a [routerLink]="'/events/' + event.slug" class="ui card" *ngFor="let event of events">
+		<div class="image">
+			<img [src]="event.place.photo" alt="event picture">
+		</div>
+		<div class="content">
+			<div class="header">APIDays {{ event.place.city }} - {{event.title}}</div>
+			<div class="meta"><event-date [event]="event"></event-date></div>
+		</div>
+	</a>
+</div>

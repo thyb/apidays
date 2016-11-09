@@ -1,0 +1,53 @@
+{
+	"id": "9b888e3c-49db-43c2-ae09-f55edca61e43",
+	"fields": [
+		{
+			"name": "id",
+			"type": "number",
+			"read": true,
+			"write": false,
+			"primary": true,
+			"unique": true,
+			"required": true,
+			"autoIncrement": true
+		},
+		{
+			"name": "title",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "start_at",
+			"type": "date",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "length",
+			"type": "number",
+			"read": true,
+			"write": true
+		}
+	],
+	"relations": [
+		{
+			"field": "id_speaker",
+			"type": "belongsTo",
+			"reference": {
+				"entity": "speaker",
+				"field": "id"
+			}
+		},
+		{
+			"field": "slug_event",
+			"type": "belongsTo",
+			"reference": {
+				"entity": "event",
+				"field": "slug"
+			}
+		}
+	]
+}

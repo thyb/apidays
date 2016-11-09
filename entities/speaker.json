@@ -1,0 +1,196 @@
+{
+	"id": "a3475811-ad85-4e92-977f-0758878ef538",
+	"fields": [
+		{
+			"name": "id",
+			"type": "number",
+			"read": true,
+			"write": false,
+			"primary": true,
+			"unique": true,
+			"required": true,
+			"autoIncrement": true
+		},
+		{
+			"name": "name",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"unique": true,
+			"required": true
+		},
+		{
+			"name": "company",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "title",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "linkedin",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "profile_picture",
+			"type": "text",
+			"read": true,
+			"write": true
+		}
+	],
+	"relations": [
+		{
+			"as": "id_speaker",
+			"type": "belongsToMany",
+			"through": "event_speaker",
+			"reference": {
+				"entity": "event",
+				"as": "slug_event"
+			},
+			"$$hashKey": "object:86585"
+		}
+	],
+	"queries": [
+		{
+			"id": "reorderSpeakers (all speakers)",
+			"type": "custom",
+			"params": [],
+			"opts": {
+				"file": "entities/queries/speaker.reorderSpeakers (all speakers)"
+			}
+		},
+		{
+			"id": "listByEvent",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"$$hashKey": "object:3001",
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/speaker.listByEvent"
+			}
+		},
+		{
+			"id": "reorderSpeakersByEvent",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"$$hashKey": "object:13469",
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/speaker.reorderSpeakersByEvent"
+			}
+		},
+		{
+			"id": "getByEvent",
+			"type": "findAll",
+			"params": [
+				{
+					"name": "slug",
+					"type": "text",
+					"required": "true",
+					"checked": true,
+					"$$hashKey": "object:4990",
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"select": [
+					"id",
+					"name",
+					"company",
+					"title",
+					"linkedin",
+					"profile_picture"
+				],
+				"conditions": [
+					{
+						"entity": "event",
+						"name": "slug",
+						"operator": "=",
+						"value": "="
+					}
+				],
+				"include": [
+					{
+						"entity": "event",
+						"fields": [
+							"slug",
+							"baseline"
+						]
+					}
+				]
+			}
+		},
+		{
+			"id": "update order",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"value": "paris-2016"
+				},
+				{
+					"type": "number",
+					"name": "speaker_id",
+					"required": true,
+					"checked": true,
+					"value": 19
+				},
+				{
+					"type": "number",
+					"name": "new_order",
+					"required": true,
+					"checked": true,
+					"value": 3
+				}
+			],
+			"opts": {
+				"file": "entities/queries/speaker.update order"
+			}
+		},
+		{
+			"id": "findByName",
+			"type": "sql",
+			"params": [
+				{
+					"type": "text",
+					"name": "name",
+					"required": true,
+					"checked": true,
+					"value": "Jer"
+				}
+			],
+			"opts": {
+				"values": {
+					"name": "="
+				},
+				"query": "SELECT *\nFROM speaker\nWHERE name LIKE '%' || :name || '%'"
+			}
+		}
+	]
+}

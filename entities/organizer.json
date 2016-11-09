@@ -1,0 +1,105 @@
+{
+	"id": "0aac1729-3e14-4c1e-a081-95750e5e2c5d",
+	"fields": [
+		{
+			"name": "company",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"primary": true,
+			"unique": true,
+			"required": true
+		},
+		{
+			"name": "logo",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		},
+		{
+			"name": "url",
+			"type": "text",
+			"read": true,
+			"write": true,
+			"required": true
+		}
+	],
+	"relations": [
+		{
+			"as": "company_organizer",
+			"type": "belongsToMany",
+			"through": "event_organizers",
+			"reference": {
+				"entity": "event",
+				"as": "slug_event"
+			}
+		}
+	],
+	"queries": [
+		{
+			"id": "listByEvent",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"$$hashKey": "object:19997",
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/organizer.listByEvent"
+			}
+		},
+		{
+			"id": "reorderByEvent",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"$$hashKey": "object:22947",
+					"value": "paris-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/organizer.reorderByEvent"
+			}
+		},
+		{
+			"id": "updateOrder",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"value": "paris-2016"
+				},
+				{
+					"type": "text",
+					"name": "company",
+					"required": true,
+					"checked": true,
+					"value": "OAuth.io"
+				},
+				{
+					"type": "text",
+					"name": "new_order",
+					"required": true,
+					"checked": true,
+					"value": "1"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/organizer.updateOrder"
+			}
+		}
+	]
+}

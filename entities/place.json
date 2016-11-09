@@ -1,0 +1,99 @@
+{
+	"id": "ac7cd187-c7ac-4f30-98a1-ec7086fc449d",
+	"fields": [
+		{
+			"name": "id_place",
+			"type": "number",
+			"primary": true,
+			"unique": true,
+			"required": true,
+			"read": true,
+			"write": false,
+			"default": false,
+			"autoIncrement": true
+		},
+		{
+			"name": "name",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "address",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": false,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "city",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "country",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "photo",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		}
+	],
+	"relations": [
+		{
+			"type": "hasMany",
+			"reference": {
+				"entity": "event",
+				"field": "id_place"
+			}
+		}
+	],
+	"queries": [
+		{
+			"id": "test",
+			"type": "findAll",
+			"params": [],
+			"opts": {
+				"select": [
+					"id_place",
+					"city",
+					"address",
+					"zipcode"
+				],
+				"conditions": [
+					{
+						"entity": "place",
+						"name": "city",
+						"operator": "=",
+						"value": "paris"
+					}
+				],
+				"include": []
+			}
+		}
+	]
+}

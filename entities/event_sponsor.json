@@ -1,0 +1,36 @@
+{
+	"id": "94cb4926-dae5-4277-b36d-13b06ffe789e",
+	"fields": [
+		{
+			"name": "category",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": false,
+			"read": true,
+			"write": true,
+			"default": true,
+			"defaultValue": "bronze"
+		},
+		{
+			"name": "order",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		}
+	],
+	"isRelation": [
+		{
+			"field": "slug_event",
+			"entity": "event"
+		},
+		{
+			"field": "id_sponsor",
+			"entity": "sponsor"
+		}
+	]
+}

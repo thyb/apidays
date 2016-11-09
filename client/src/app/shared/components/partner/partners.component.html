@@ -1,0 +1,13 @@
+<div class="ui doubling four cards centered">
+	<a class="ui card link" [href]="partner.url" target="_blank" *ngFor="let partner of partners">
+		<div class="image">
+			<img [src]="partner.logo">
+		</div>
+		<div class="content">
+			<div class="header">
+				{{partner.name}}
+			</div>
+		</div>
+	</a>
+</div>
+

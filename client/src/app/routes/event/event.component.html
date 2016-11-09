@@ -1,0 +1,63 @@
+<menu-top [center]="true" [fixed]="true" [links]="links"></menu-top>
+
+<div *ngIf="event">
+  <div class="ui text container">
+    <div id="home">
+      <img src="/assets/images/apidays.png" class="apidays">
+      <h2 class="ui header">
+        APIDays {{event.place.city }}
+      </h2>
+      <h1 class="ui header">{{event.title}}
+        <div class="sub header">
+          {{event.baseline}}
+        </div>
+      </h1>
+      <h3 class="ui header" *ngIf="event.description">{{event.description}}</h3>
+      
+      <h3 class="ui header info">
+        <div>
+          <event-date [event]="event"></event-date>
+        </div>
+        <div>{{event.place.city}}, {{event.place.country}}</div>
+      </h3>
+      <div class="c2a">
+        <a *ngIf="event.eventbrite" [href]="event.eventbrite" class="ui primary button big">Register for the Conference</a>
+        <a *ngIf="event.hackathon" [href]="event.hackathon" class="ui basic button big">Register for the Hackathon</a>
+      </div>
+      <div class="c2a">
+        <a *ngIf="event.call_to_speaker" [href]="event.call_to_speaker" class="ui basic button big">Apply to be speaker</a>
+      </div>
+    </div>
+  </div>
+  <div style="background-position:center" [style.background-image]="placePhoto" id="place">
+    <div class="content">
+      <h2>{{event.place.name}}</h2>
+      <h4 *ngIf="event.place.address">{{event.place.address}}</h4>
+      <h3>{{event.place.city}}, {{event.place.country}}</h3>
+    </div>
+  </div>
+  <div class="ui container">
+    <div id="speakers" *ngIf="event.speakers && event.speakers.length">
+      <h1 style="margin-bottom:30px; text-align: center">Speakers</h1>
+      <speakers [speakers]="event.speakers"></speakers>
+    </div>
+
+    <div id="sponsors" *ngIf="event && event.sponsors && event.sponsors.length">
+      <h1>Sponsors & Media</h1>
+
+      <sponsors [sponsors]="event.sponsors" category="gold"></sponsors>
+      <sponsors [sponsors]="event.sponsors" category="silver"></sponsors>
+      <sponsors [sponsors]="event.sponsors" category="bronze"></sponsors>
+    </div>
+
+    <div id="partners" *ngIf="event && event.partners && event.partners.length">
+      <h1>Partners</h1>
+
+      <partners [partners]="event.partners"></partners>
+    </div>
+  </div>
+  <div id="organizers" *ngIf="event && event.organizers && event.organizers.length">
+    <h1>Organized for you by</h1>
+    <organizers [organizers]="event.organizers"></organizers>
+  </div>
+</div>

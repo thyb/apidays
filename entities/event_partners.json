@@ -1,0 +1,13 @@
+{
+	"id": "ddd13776-4b41-43f9-8b1c-43d6340a321b",
+	"isRelation": [
+		{
+			"field": "id_partner",
+			"entity": "partner"
+		},
+		{
+			"field": "slug_event",
+			"entity": "event"
+		}
+	]
+}

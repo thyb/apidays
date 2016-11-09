@@ -1,0 +1,117 @@
+{
+	"id": "80bf60a4-a227-491c-9472-4380db6f4b75",
+	"fields": [
+		{
+			"name": "id",
+			"type": "number",
+			"primary": true,
+			"unique": true,
+			"required": true,
+			"read": true,
+			"write": false,
+			"default": false,
+			"autoIncrement": true
+		},
+		{
+			"name": "company",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "logo",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "url",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": true,
+			"defaultValue": "https://google.com"
+		}
+	],
+	"relations": [
+		{
+			"as": "id_sponsor",
+			"type": "belongsToMany",
+			"through": "event_sponsor",
+			"reference": {
+				"entity": "event",
+				"as": "slug_event"
+			}
+		}
+	],
+	"queries": [
+		{
+			"id": "reorderByEvent",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"$$hashKey": "object:32352",
+					"value": "banking-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/sponsor.reorderByEvent"
+			}
+		},
+		{
+			"id": "updateOrder",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true
+				},
+				{
+					"type": "number",
+					"name": "sponsor_id",
+					"required": true
+				},
+				{
+					"type": "number",
+					"name": "new_order",
+					"required": true
+				}
+			],
+			"opts": {
+				"file": "entities/queries/sponsor.updateOrder"
+			}
+		},
+		{
+			"id": "listByEvent",
+			"type": "custom",
+			"params": [
+				{
+					"type": "text",
+					"name": "slug",
+					"required": true,
+					"checked": true,
+					"value": "banking-2016"
+				}
+			],
+			"opts": {
+				"file": "entities/queries/sponsor.listByEvent"
+			}
+		}
+	]
+}

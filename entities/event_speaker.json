@@ -1,0 +1,25 @@
+{
+	"id": "3bc846bb-8afb-4965-a696-22b168f1a412",
+	"fields": [
+		{
+			"name": "order",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		}
+	],
+	"isRelation": [
+		{
+			"field": "id_speaker",
+			"entity": "speaker"
+		},
+		{
+			"field": "slug_event",
+			"entity": "event"
+		}
+	]
+}

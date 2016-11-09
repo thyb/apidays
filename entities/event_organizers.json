@@ -1,0 +1,25 @@
+{
+	"id": "76887941-1bdf-4fe5-b26d-a304fde3d23f",
+	"fields": [
+		{
+			"name": "order",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		}
+	],
+	"isRelation": [
+		{
+			"field": "company_organizer",
+			"entity": "organizer"
+		},
+		{
+			"field": "slug_event",
+			"entity": "event"
+		}
+	]
+}
