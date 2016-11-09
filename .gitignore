@@ -1,0 +1,8 @@
+node_modules
+*.sqlite
+.materia
+changes.json
+client/src/assets/images/*
+!client/src/assets/images/apidays*
+web/assets/images/*
+!web/assets/images/apidays*

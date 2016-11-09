@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/thyb/apidays#readme",
   "engines": {
-    "node": "~6.9.1"
+    "node": "~7.0.0"
   },
   "dependencies": {
-    "sequelize": "^3.24.4",
-    "materia-server": "git://github.com/webshell/materia-server.git#0e248f5d27b935d268806282e729d4477633daaf"
+    "sequelize": "^3.24.8",
+    "materia-server": "^0.4.0"
   }
 }
